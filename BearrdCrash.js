@@ -210,16 +210,16 @@ var coinPositions = [
     new BABYLON.Vector3(224, 74.5, -8),
 
     // Third Group
-    new BABYLON.Vector3(179-1, 73.1+1, -9-83),
-    new BABYLON.Vector3(181-1, 73.3+1, -9-86),
-    new BABYLON.Vector3(183-1, 74.1+1, -9-89),
-    new BABYLON.Vector3(185-1, 73.1+1, -9-92),
-    new BABYLON.Vector3(187-1, 73.3+1, -9-95),
-    new BABYLON.Vector3(188-1, 74.1-1, -9-98),
-    new BABYLON.Vector3(187-1, 74.3-1, -9-101),
-    new BABYLON.Vector3(187-1, 74.5-1, -9-104),
-    new BABYLON.Vector3(187-1, 74.3-1, -9-107),
-    new BABYLON.Vector3(187-1, 74.5-1.5, -9-109),
+    new BABYLON.Vector3(179 - 1, 73.1 + 1, -9 - 83),
+    new BABYLON.Vector3(181 - 1, 73.3 + 1, -9 - 86),
+    new BABYLON.Vector3(183 - 1, 74.1 + 1, -9 - 89),
+    new BABYLON.Vector3(185 - 1, 73.1 + 1, -9 - 92),
+    new BABYLON.Vector3(187 - 1, 73.3 + 1, -9 - 95),
+    new BABYLON.Vector3(188 - 1, 74.1 - 1, -9 - 98),
+    new BABYLON.Vector3(187 - 1, 74.3 - 1, -9 - 101),
+    new BABYLON.Vector3(187 - 1, 74.5 - 1, -9 - 104),
+    new BABYLON.Vector3(187 - 1, 74.3 - 1, -9 - 107),
+    new BABYLON.Vector3(187 - 1, 74.5 - 1.5, -9 - 109),
     // e {x: -21.2725830078125, y: 71.23190389723554, z: -210.91212463378906}
     //fourth group
     new BABYLON.Vector3(-21, 72.23, -210),
@@ -248,16 +248,16 @@ var coinPositions = [
 
     // sixth group
     // e {x: -492.9230041503906, y: 71.88243948073163, z: -23.842891693115234}
-    new BABYLON.Vector3(-496+2, 74.37, -23-10),
-    new BABYLON.Vector3(-496+2, 74.37, -22-10),
-    new BABYLON.Vector3(-496+2, 74.37, -21-10),
-    new BABYLON.Vector3(-496+2, 74.37, -20-10),
-    new BABYLON.Vector3(-496+2, 74.37, -19-10),
-    new BABYLON.Vector3(-494+2, 74.37, -18-10),
-    new BABYLON.Vector3(-496+2, 74.37, -16-10),
-    new BABYLON.Vector3(-496+2, 74.37, -15-10),
-    new BABYLON.Vector3(-494+2, 74.37, -13-10),
-    new BABYLON.Vector3(-494+2, 74.37, -12-10),
+    new BABYLON.Vector3(-496 + 2, 74.37, -23 - 10),
+    new BABYLON.Vector3(-496 + 2, 74.37, -22 - 10),
+    new BABYLON.Vector3(-496 + 2, 74.37, -21 - 10),
+    new BABYLON.Vector3(-496 + 2, 74.37, -20 - 10),
+    new BABYLON.Vector3(-496 + 2, 74.37, -19 - 10),
+    new BABYLON.Vector3(-494 + 2, 74.37, -18 - 10),
+    new BABYLON.Vector3(-496 + 2, 74.37, -16 - 10),
+    new BABYLON.Vector3(-496 + 2, 74.37, -15 - 10),
+    new BABYLON.Vector3(-494 + 2, 74.37, -13 - 10),
+    new BABYLON.Vector3(-494 + 2, 74.37, -12 - 10),
 
     // e {x: -398.6725158691406, y: 72.62645803541913, z: 187.11956787109375}
     // seventh group
@@ -303,107 +303,107 @@ var coinPositions = [
 //e {x: -234.41542053222656, y: 70.37197958082929, z: -223.41043090820312}
 var Coins_Rotations = [
     // First Group
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
     // Second Group
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
 
     // Third Group
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
     // e {x: -21.2725830078125, y: 71.23190389723554, z: -210.91212463378906}
     //fourth group
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
 
     // fifth gtroup
     // e {x: -221.45681762695312, y: 71.91479574293867, z: -225.51959228515625}
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
 
     // sixth group
     // e {x: -492.9230041503906, y: 71.88243948073163, z: -23.842891693115234}
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
 
     // e {x: -398.6725158691406, y: 72.62645803541913, z: 187.11956787109375}
     // seventh group
 
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
 
     // e {x: -86.47960662841797, y: 71.32195364088788, z: 416.4701843261719}
     // eighth group 
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
 
     // e {x: 162.05426025390625, y: 71.7837990388371, z: 308.0093078613281}
     // nineth group
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0),
-    new BABYLON.Vector3(0,0,0)
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0),
+    new BABYLON.Vector3(0, 0, 0)
 ]
 
 var numPlatforms = 7;
@@ -810,7 +810,26 @@ window.addEventListener('DOMContentLoaded', function () {
 
         var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(100, 0, 0), scene);
         light.parent = camera;
+        //light.shadowEnabled=true;
 
+        // //light1
+        // var light1 = new BABYLON.DirectionalLight("dir01", new BABYLON.Vector3(0 * 100, -50, 0), scene);
+        // //light1.position = new BABYLON.Vector3(100 * 0, 100, 0);
+        // light.position = new BABYLON.Vector3(-20, 240, -20);
+        // light1.intensity = 0.5;
+        var light2 = new BABYLON.DirectionalLight("dir01", new BABYLON.Vector3(-1, -2, -1), scene);//-1, -2, -1), scene);
+        light2.position = new BABYLON.Vector3(-0, 340, -0);
+        light2.intensity = 0.5;
+        // var light = light2;
+        var shadowGenerator = new BABYLON.ShadowGenerator(2048, light2, true);
+        //shadowGenerator.setDarkness(1.0);
+        // shadowGenerator.useExponentialShadowMap = true;
+        // Shadows
+        // var shadowGenerator = new BABYLON.ShadowGenerator(1024, light);
+        var lightSphere = BABYLON.Mesh.CreateSphere("sphere", 100, 20, scene);
+        lightSphere.position = light2.position;
+        lightSphere.material = new BABYLON.StandardMaterial("light", scene);
+        lightSphere.material.emissiveColor = new BABYLON.Color3(1, 1, 0);
 
         music = new BABYLON.Sound("River", "sounds/river-1.wav", scene, null, { loop: true, autoplay: false, volume: 0.2 });
         music2 = new BABYLON.Sound("HighRiser", "sounds/HighRiser.mp3", scene, null, { loop: true, autoplay: false });
@@ -949,6 +968,7 @@ window.addEventListener('DOMContentLoaded', function () {
         var meshTaskCity = assetsManagerCity.addMeshTask("Citymeshes", "", "", "Models/Environment/B/Env13.babylon");
         meshTaskCity.onSuccess = function (task) {
             var City_ = task.loadedMeshes[0];
+            // task.loadedMeshes[0].receiveShadows = true;
         }
 
         /////////////////////////////// BOMBS /////////////////////////////////
@@ -1076,6 +1096,12 @@ window.addEventListener('DOMContentLoaded', function () {
             wheelMeshes2[FRONT_RIGHT] = wheelMeshes[FRONT_RIGHT] = wheelfrontRight;
             wheelMeshes2[BACK_LEFT] = wheelMeshes[BACK_LEFT] = wheelbackLeft;
             wheelMeshes2[BACK_RIGHT] = wheelMeshes[BACK_RIGHT] = wheelbackRight;
+            // shadowGenerator.addShadowCaster(carTorso);
+            // shadowGenerator.useExponentialShadowMap = true;
+            shadowGenerator.addShadowCaster(carTorso);
+            // shadowGenerator.addShadowCaster(carTorso);
+            shadowGenerator.useExponentialShadowMap = true;
+            //shadowGenerator.setDarkness(0.99);
 
         }
 
@@ -1084,7 +1110,7 @@ window.addEventListener('DOMContentLoaded', function () {
         var carBackwardMesh = BABYLON.MeshBuilder.CreateSphere("carBackwardMesh", { diameterX: 1.8, diameterY: 0.5, diameterZ: 0.5 }, scene);
         carBackwardMesh.isVisible = false;
 
-        // initial_car_pos = new BABYLON.Vector3(-490.2470703125, 80, 20.43869018554687);//-492, 80, -12//73.23
+        initial_car_pos = new BABYLON.Vector3(-490.2470703125, 80, 20.43869018554687);//-492, 80, -12//73.23
         var explosion = BABYLON.ParticleHelper.CreateAsync("explosion", scene);
         var startAndFinishLine = BABYLON.MeshBuilder.CreateGround("startAndFinish", { width: 2, height: 8 }, scene);
         startAndFinishLine.position = new BABYLON.Vector3(197, 76.15, 125);
@@ -1136,6 +1162,7 @@ window.addEventListener('DOMContentLoaded', function () {
                 s.scaling = new BABYLON.Vector3(3, 3, 3);
 
                 s.physicsImpostor = new BABYLON.PhysicsImpostor(s, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 500 });
+                shadowGenerator.addShadowCaster(s);
 
                 var tuple = [s, new Date().getTime()]
                 spheres.push(tuple);
@@ -1143,6 +1170,8 @@ window.addEventListener('DOMContentLoaded', function () {
                     var difference = ((new Date().getTime()) - sphere_time) / 1000;
                     if (difference > 10) {
                         sphere.dispose();
+                        shadowGenerator.removeShadowCaster(sphere);
+
                     }
                 });
 
@@ -1398,7 +1427,7 @@ window.addEventListener('DOMContentLoaded', function () {
                 else {
                     local_pause = false;
                 }
-                if (startMotion && global_pos.y < 60) {
+                if (startMotion && global_pos.y < -1000) {//60) {
                     falls_counter++
                     if (falls_counter > 3) {
                         gameover_on = true;
@@ -1428,7 +1457,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
                     }
                 }
-                if (startMotion == 1 && global_pos.y < 60) {
+                if (startMotion == 1 && global_pos.y < -1000) {//60) {
                     falls_counter++
                     if (falls_counter > 3) {
                         gameover_on = true;
@@ -1503,7 +1532,7 @@ window.addEventListener('DOMContentLoaded', function () {
         var wheel_size_BACK_LEFT = wheelMeshes[BACK_LEFT].getBoundingInfo().boundingBox.extendSizeWorld;
         var wheel_size_BACK_RIGHT = wheelMeshes[BACK_RIGHT].getBoundingInfo().boundingBox.extendSizeWorld;
         var body_size = Body_Box.getBoundingInfo().boundingBox.extendSizeWorld;
-        Body_Box.isVisible = false;
+        Body_Box.isVisible = true;
         massVehicle = 50;
         cardimensions(2 * body_size.x, 2 * body_size.y, 2 * body_size.z, massVehicle, 1);
         //body
@@ -1650,50 +1679,50 @@ window.addEventListener('DOMContentLoaded', function () {
             }
         }, 1000);
     };
-    var makePhysicsObject = (newMeshes, scene, scaling) => {
-        // Create physics root and position it to be the center of mass for the imported mesh
-        var physicsRoot = new BABYLON.Mesh("physicsRoot", scene);
+    // var makePhysicsObject = (newMeshes, scene, scaling) => {
+    //     // Create physics root and position it to be the center of mass for the imported mesh
+    //     var physicsRoot = new BABYLON.Mesh("physicsRoot", scene);
 
-        // For all children labeled box (representing colliders), make them invisible and add them as a child of the root object
-        newMeshes.forEach((m, i) => {
-            if ((m.name.indexOf("Box") != -1) || (m.name.indexOf("Cylinder") != -1)) {
-                m.isVisible = false
-                physicsRoot.addChild(m)
-            }
-        })
+    //     // For all children labeled box (representing colliders), make them invisible and add them as a child of the root object
+    //     newMeshes.forEach((m, i) => {
+    //         if ((m.name.indexOf("Box") != -1) || (m.name.indexOf("Cylinder") != -1)) {
+    //             m.isVisible = false
+    //             physicsRoot.addChild(m)
+    //         }
+    //     })
 
-        // Add all root nodes within the loaded gltf to the physics root
-        newMeshes.forEach((m, i) => {
-            if (m.parent == null) {
-                physicsRoot.addChild(m)
-            }
-        })
+    //     // Add all root nodes within the loaded gltf to the physics root
+    //     newMeshes.forEach((m, i) => {
+    //         if (m.parent == null) {
+    //             physicsRoot.addChild(m)
+    //         }
+    //     })
 
-        // Make every collider into a physics impostor
-        physicsRoot.getChildMeshes().forEach((m) => {
-            if (m.name.indexOf("Box") != -1) {
-                m.scaling.x = Math.abs(m.scaling.x)
-                m.scaling.y = Math.abs(m.scaling.y)
-                m.scaling.z = Math.abs(m.scaling.z)
-                m.physicsImpostor = new BABYLON.PhysicsImpostor(m, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0.1, friction: 0.5, restitution: 0.3 }, scene);
-            }
-            else
-                if (m.name.indexOf("Cylinder") != -1) {
-                    m.scaling.x = 3.0 * Math.abs(m.scaling.x)
-                    m.scaling.y = 4.0 * Math.abs(m.scaling.y)
-                    m.scaling.z = 3.0 * Math.abs(m.scaling.z)
-                    // m.physicsImpostor = new BABYLON.PhysicsImpostor(m, BABYLON.PhysicsImpostor.CylinderImpostor, { mass: 10, friction: 0.5, restitution: 0.0 }, scene);
-                    m.physicsImpostor = new BABYLON.PhysicsImpostor(m, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 10, friction: 0.5, restitution: 0.7 }, scene);
-                }
+    //     // Make every collider into a physics impostor
+    //     physicsRoot.getChildMeshes().forEach((m) => {
+    //         if (m.name.indexOf("Box") != -1) {
+    //             m.scaling.x = Math.abs(m.scaling.x)
+    //             m.scaling.y = Math.abs(m.scaling.y)
+    //             m.scaling.z = Math.abs(m.scaling.z)
+    //             m.physicsImpostor = new BABYLON.PhysicsImpostor(m, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0.1, friction: 0.5, restitution: 0.3 }, scene);
+    //         }
+    //         else
+    //             if (m.name.indexOf("Cylinder") != -1) {
+    //                 m.scaling.x = 3.0 * Math.abs(m.scaling.x)
+    //                 m.scaling.y = 4.0 * Math.abs(m.scaling.y)
+    //                 m.scaling.z = 3.0 * Math.abs(m.scaling.z)
+    //                 // m.physicsImpostor = new BABYLON.PhysicsImpostor(m, BABYLON.PhysicsImpostor.CylinderImpostor, { mass: 10, friction: 0.5, restitution: 0.0 }, scene);
+    //                 m.physicsImpostor = new BABYLON.PhysicsImpostor(m, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 10, friction: 0.5, restitution: 0.7 }, scene);
+    //             }
 
-        })
+    //     })
 
-        // Scale the root object and turn it into a physics impsotor
-        physicsRoot.scaling.scaleInPlace(scaling)
-        physicsRoot.physicsImpostor = new BABYLON.PhysicsImpostor(physicsRoot, BABYLON.PhysicsImpostor.NoImpostor, { mass: 10, friction: 0.5, restitution: 0.7 }, scene);
+    //     // Scale the root object and turn it into a physics impsotor
+    //     physicsRoot.scaling.scaleInPlace(scaling)
+    //     physicsRoot.physicsImpostor = new BABYLON.PhysicsImpostor(physicsRoot, BABYLON.PhysicsImpostor.NoImpostor, { mass: 10, friction: 0.5, restitution: 0.7 }, scene);
 
-        return physicsRoot
-    }
+    //     return physicsRoot
+    // }
 
     var engine;
     try {
