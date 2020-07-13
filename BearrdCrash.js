@@ -50,6 +50,7 @@ var dayornight = true;
 var onOrOff = false;
 var startCountdownTimer = true;
 
+var soundOn = false;
 var startPressed = false;
 var activateP = false;
 var makePause = false;
@@ -90,7 +91,6 @@ var chassisHeight = .9 * localscale_;
 var chassisLength = 4 * localscale_;
 var massVehicle = 200//*localscale_;
 var pos_car_fact = 3;
-var initial_car_pos = new BABYLON.Vector3(pos_car_fact * 70, 82, pos_car_fact * 40);
 var pause_car_Pos;//= new BABYLON.Vector3(pos_car_fact * 70, 82, pos_car_fact * 40);
 var pause_car_Rot;//= new BABYLON.Vector3(pos_car_fact * 70, 82, pos_car_fact * 40);
 var local_pause = false;
@@ -133,6 +133,9 @@ var deltaAngle = 0.01 * Math.PI / 3;
 var rightFrontAngle = 0;
 
 
+var initial_car_pos = new BABYLON.Vector3(-490.2470703125, 80, 20.43869018554687);
+var startline_pos = new BABYLON.Vector3(-486.2470703125, 75.4, 25.43869018554687);
+
 //sky
 var skybox;
 var skyboxMaterial;
@@ -151,12 +154,13 @@ var positionExplosions = [];
 
 ///////////////////////////////////////// USER INTERFACE VARIABLES  /////////////////////////////////////////////////
 // timer data
-var jinit0 = 240;//253;
+var jinit0 = 480;//253;
 var currentTime = jinit0;
 var printedTime = 0;
 var counterTimer = Math.floor(currentTime / 60);
 var previousCoin;
 var heightRatio = 0.45;
+var difficultyRatio = 0;
 
 // buttons click check
 var click = 0;
@@ -172,29 +176,35 @@ var meshTasksBombs = [];
 var bombTorsos = [];
 var bombPlanes = [];
 var intersectionBombs = [];
-var bomb_positions = [new BABYLON.Vector3(initial_bombs_pos.x, initial_bombs_pos.y - pos_bombs_fact * 0.5, initial_bombs_pos.z),
-new BABYLON.Vector3(initial_bombs_pos.x + 10, initial_bombs_pos.y - pos_bombs_fact * 0.7, initial_bombs_pos.z + pos_bombs_fact * 30),
-new BABYLON.Vector3(initial_bombs_pos.x + 10, initial_bombs_pos.y - pos_bombs_fact * 0.7, initial_bombs_pos.z + pos_bombs_fact * 43),
-new BABYLON.Vector3(initial_bombs_pos.x - pos_bombs_fact * 36, initial_bombs_pos.y - pos_bombs_fact * 0.35, initial_bombs_pos.z + pos_bombs_fact * 84),
-new BABYLON.Vector3(initial_bombs_pos.x - pos_bombs_fact * 70, initial_bombs_pos.y - pos_bombs_fact * 0.85, initial_bombs_pos.z + pos_bombs_fact * 116),
-new BABYLON.Vector3(-88, 71.5, 417),
-new BABYLON.Vector3(-158.31759643554688, 71.2, 392.5709228515625),
-new BABYLON.Vector3(-289.6668701171875, 71.5, 366.0986022949219),
-new BABYLON.Vector3(-379.8580322265625, 70, 241.9297332763672),
-new BABYLON.Vector3(-430.86285400390625, 77.3, 114.7979507446289),//77.3//
-new BABYLON.Vector3(-493.0850524902344, 76.8, 4.587120056152344),
-new BABYLON.Vector3(-395.86175537109375, 73.3, -146.88792419433594),
-new BABYLON.Vector3(-283.9041442871094, 69.3, -245.26821899414062),
-new BABYLON.Vector3(-83.41072845458984, 73.6, -207.04055786132812),
-new BABYLON.Vector3(37.76666259765625, 71.3, -183.37867736816406),
-new BABYLON.Vector3(139.16384887695312, 72.1, -107.34320831298828)
+
+
+var bomb_positions = [
+    new BABYLON.Vector3(initial_bombs_pos.x, initial_bombs_pos.y - pos_bombs_fact * 0.5, initial_bombs_pos.z),
+    new BABYLON.Vector3(initial_bombs_pos.x + 10, initial_bombs_pos.y - pos_bombs_fact * 0.7, initial_bombs_pos.z + pos_bombs_fact * 30),
+    new BABYLON.Vector3(initial_bombs_pos.x + 10, initial_bombs_pos.y - pos_bombs_fact * 0.7, initial_bombs_pos.z + pos_bombs_fact * 43),
+    new BABYLON.Vector3(initial_bombs_pos.x - pos_bombs_fact * 36, initial_bombs_pos.y - pos_bombs_fact * 0.35, initial_bombs_pos.z + pos_bombs_fact * 84),
+    new BABYLON.Vector3(initial_bombs_pos.x - pos_bombs_fact * 70, initial_bombs_pos.y - pos_bombs_fact * 0.85, initial_bombs_pos.z + pos_bombs_fact * 116),
+    new BABYLON.Vector3(-88, 71.5, 417),
+    new BABYLON.Vector3(-158.31759643554688, 71.2, 392.5709228515625),
+    new BABYLON.Vector3(-289.6668701171875, 71.5, 366.0986022949219),
+    new BABYLON.Vector3(-379.8580322265625, 70, 241.9297332763672),
+    new BABYLON.Vector3(-430.86285400390625, 77.3, 114.7979507446289),//77.3//
+    new BABYLON.Vector3(-493.0850524902344, 76.8, 4.587120056152344),
+    new BABYLON.Vector3(-395.86175537109375, 73.3, -146.88792419433594),
+    new BABYLON.Vector3(-283.9041442871094, 69.3, -245.26821899414062),
+    new BABYLON.Vector3(-83.41072845458984, 73.6, -207.04055786132812),
+    new BABYLON.Vector3(37.76666259765625, 71.3, -183.37867736816406),
+    new BABYLON.Vector3(139.16384887695312, 72.1, -107.34320831298828)
 ]
+
+
 
 var numCoins = 80;
 var coinTorsos = [];
 var coinPlanes = [];
 var meshTasksCoins = [];
 var intersectionCoins = [];
+
 var coinPositions = [
     // First Group
     new BABYLON.Vector3(215, 72.5, 50),
@@ -406,6 +416,7 @@ var Coins_Rotations = [
     new BABYLON.Vector3(0, 0, 0)
 ]
 
+
 var numPlatforms = 7;
 var pos_Platforms_fact = 4;
 var platformTorsos = [];
@@ -430,7 +441,6 @@ var Platforms_Rotations = [
     new BABYLON.Vector3(-7, 170, -4.5),
     new BABYLON.Vector3(0, 125, -4)
 ]
-// initial_car_pos = new BABYLON.Vector3(-420.957275390625, 76.9+10, 129.4896240234375);//-492, 80, -12//73.23
 
 var cardimensions = function (glocabl_chassis_Width, glocabl_chassis_Height, glocabl_chassis_Length, glocabl_chassis_mass, localscale_) {
 
@@ -488,17 +498,8 @@ var bombExplosion = function (moveableObject, moveableObject2, moveableObjectTor
         bombFlag = true;
         stayedObject.dispose();
         stayedObjectPlane.dispose();
-        music3.play();
-    }
-    if (bombFlag) {
-        if (bombCounter < 32 * 5) {
-            moveableObjectTorso.addRotation(0, Math.PI / 32, 0);
-            moveableObjectTorso.translate(new BABYLON.Vector3(0, 0, -1), 0.01, BABYLON.Space.LOCAL);
-            bombCounter += 1;
-        }
-        else {
-            bombFlag = false;
-            bombCounter = 0;
+        if (soundOn) {
+            music3.play();
         }
     }
 }
@@ -506,7 +507,9 @@ var bombExplosion = function (moveableObject, moveableObject2, moveableObjectTor
 
 function coinGather(moveableObject, moveableObject2, stayedObject, stayedObjectTorso, textBlock, intersectionInfoCoins) { // here will be added textblock later
     if ((moveableObject.intersectsMesh(stayedObject) || moveableObject2.intersectsMesh(stayedObject)) && intersectionInfoCoins) {
-        music6.play();
+        if (soundOn) {
+            music6.play();
+        }
         if (previousCoin != stayedObject) {
             previousCoin = stayedObject;
             gatheredCoins++;
@@ -532,7 +535,10 @@ function coinGather(moveableObject, moveableObject2, stayedObject, stayedObjectT
 function speedTheCar(moveableObject, moveableObjectTorso, stayedObjectTorso) {
     if (moveableObject.intersectsMesh(stayedObjectTorso)) {
         speedFlag = 1;
-        music5.play();
+        if (soundOn) {
+            music5.play();
+
+        }
     }
 
     if (speedFlag == 1) {
@@ -549,51 +555,75 @@ function speedTheCar(moveableObject, moveableObjectTorso, stayedObjectTorso) {
 
 
 function checkRoots(moveableObject, checkPos1, checkPos2) {
-    if (moveableObject.intersectsMesh(checkPos2)) {
+    if (moveableObject.intersectsMesh(checkPos1)) {
         checkPos = 1;
     }
-    if (checkPos == 1 && moveableObject.intersectsMesh(checkPos1)) {
+    if (checkPos == 1 && moveableObject.intersectsMesh(checkPos2)) {
         checkPos = 2;
     }
 
 }
-
 function finishLineChecker(moveableObject, finishLine) {
     if (checkPos == 2 && moveableObject.intersectsMesh(finishLine)) {
         finishedTruly = true;
     }
 }
-var advancedTextureMenu;
-var advancedTextureHelp;
-var advancedTextureSettings;
-
+var buttonBackHelp;
+var helpInstructions;
+var buttonBackSettings;
+var buttonSound;
+var buttonStart;
+var buttonSettings;
+var sliderLight;
+var buttonDayOrNight;
+var sliderDifficulty;
+var sliderHeight;
+var buttonHelp;
+var soundText;
+var moonIcon;
+var sunIcon;
+var soundIcon;
+var soundOnIcon;
+var soundOffIcon;
+var buttonNight = true;
+var clicked = false;
+var clickedDay = false;
+var dayText;
+var dayIcon;
+var numberOfspheres = Math.floor(100 * difficultyRatio);
 var menuData = function (scene, pauseFlag) {
+    var advancedTextureMenu;
+    var advancedTextureHelp;
+    var advancedTextureSettings;
     advancedTextureMenu = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
     var tableMenu = new BABYLON.GUI.Rectangle();
     tableMenu.width = "820px";
-    tableMenu.height = "100px";
+    tableMenu.height = "150px";
     tableMenu.cornerRadius = 10;
-    tableMenu.color = "Blue";
-    tableMenu.thickness = 10;
-    tableMenu.background = "Purple";
+    // tableMenu.color = "Blue";
+    // tableMenu.thickness = 10;
+    // tableMenu.background = "Purple";
     tableMenu.leftInPixels = -25;
 
 
 
 
     if (pauseFlag) {
-        var buttonStart = BABYLON.GUI.Button.CreateSimpleButton("butStart", "Resume");;
+        buttonStart = BABYLON.GUI.Button.CreateSimpleButton("butStart", "Resume");;
         notStart = true;
     }
     else {
-        var buttonStart = BABYLON.GUI.Button.CreateSimpleButton("butStart", "Start");;
+        buttonStart = BABYLON.GUI.Button.CreateSimpleButton("butStart", "Play");;
         gameStarted = false;
     }
     buttonStart.width = "200px"
     buttonStart.height = "80px";
-    buttonStart.color = "white";
+    buttonStart.color = "red";
     buttonStart.cornerRadius = 20;
-    buttonStart.background = "green";
+    buttonStart.thickness = 5;
+    buttonStart.background = "yellow";
+    buttonStart.fontSize = 40;
+    buttonStart.fontStyle = "bold";
     buttonStart.leftInPixels = -260;
     buttonStart.onPointerUpObservable.add(function () {
         startPressed = true;
@@ -608,71 +638,160 @@ var menuData = function (scene, pauseFlag) {
 
     });
 
-    var buttonSettings = BABYLON.GUI.Button.CreateSimpleButton("butSettings", "Settings");
+    buttonSettings = BABYLON.GUI.Button.CreateSimpleButton("butSettings", "Settings");
     buttonSettings.width = "200px";
     buttonSettings.height = "80px";
-    buttonSettings.color = "white";
+    buttonSettings.color = "red";
+    buttonSettings.fontSize = 40;
+    buttonSettings.fontStyle = "bold";
+    buttonSettings.thickness = 5;
     buttonSettings.cornerRadius = 20;
-    buttonSettings.background = "green";
+    buttonSettings.background = "yellow";
     buttonSettings.leftInPixels = -20;
     buttonSettings.onPointerUpObservable.add(function () {
         advancedTextureMenu.dispose();
         advancedTextureSettings = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
-        var buttonBackSettings = BABYLON.GUI.Button.CreateSimpleButton("buttonBackSettings", "Back");
-        var buttonSound = BABYLON.GUI.Button.CreateSimpleButton("buttonSound", "On");
-        buttonSound.width = "200px";
+        buttonBackSettings = BABYLON.GUI.Button.CreateSimpleButton("buttonBackSettings", "Back");
+
+        buttonSound = BABYLON.GUI.Button.CreateSimpleButton("buttonSound", soundText);
+        buttonSound.width = "150px";
         buttonSound.height = "40px";
-        buttonSound.color = "white";
+        buttonSound.color = "red";
         buttonSound.cornerRadius = 20;
-        buttonSound.background = "green";
-        buttonSound.leftInPixels = 400;
-        buttonSound.topInPixels = -70;
+        buttonSound.thickness = 5;
+        buttonSound.background = "yellow";
+        buttonSound.fontStyle = "bold";
+        buttonSound.fontSize = 25;
+        buttonSound.leftInPixels = 240;
+        buttonSound.topInPixels = 43;
+
+        soundOffIcon = new BABYLON.GUI.Image("", "soundOff.png");
+        soundOffIcon.width = "60px";
+        soundOffIcon.height = "60px";
+        soundOffIcon.leftInPixels = 90;
+        soundOffIcon.topInPixels = 40;
+
+        soundOnIcon = new BABYLON.GUI.Image("", "soundOn.png");
+        soundOnIcon.width = "60px";
+        soundOnIcon.height = "60px";
+        soundOnIcon.leftInPixels = 380;
+        soundOnIcon.topInPixels = 40;
+        
+        if(clickSound == 0){
+            advancedTextureSettings.addControl(soundOffIcon)
+        }
+        else{
+            if(clicked == false){
+                if(soundIcon == "off")
+                    advancedTextureSettings.addControl(soundOffIcon)
+                else{
+                    advancedTextureSettings.addControl(soundOnIcon)
+                }
+            }
+
+        }
+
 
         buttonSound.onPointerUpObservable.add(function () {
-            clickSound += 1;
-            if (clickSound % 2 == 0) {
+            clicked = true
+
+            if (clickSound == 0) {
+                soundOnIcon.dispose()
+                advancedTextureSettings.addControl(soundOffIcon)
+
+                clickSound = 1;
+            }
+            if (clickSound == 2) {
+                clickSound = 1
                 buttonSound.textBlock.text = "On";
                 onOrOff = true;
                 music.pause();
                 music2.pause();
+                soundOn = false;
 
+                advancedTextureSettings.addControl(soundOffIcon);
+                soundOnIcon.dispose();
             }
-            else {
+            else if (clickSound == 1) {
+                clickSound = 2
                 buttonSound.textBlock.text = "Off";
                 onOrOff = false;
                 music.play();
                 music2.play();
+                soundOn = true;
                 BABYLON.Engine.audioEngine.unlock();
+                advancedTextureSettings.addControl(soundOnIcon);
+
+                soundOffIcon.dispose();
             }
         });
-        var sliderLight = new BABYLON.GUI.Slider();
+
+        sliderLight = new BABYLON.GUI.Slider();
         sliderLight.minimum = 0;
         sliderLight.maximum = 2;
         sliderLight.value = intensityValue;
-        sliderLight.height = "20px";
-        sliderLight.width = "200px";
-        sliderLight.leftInPixels = 400;
-        sliderLight.topInPixels = 10;
+        sliderLight.height = "15px";
+        sliderLight.width = "220px";
+        sliderLight.background = "yellow";
+        sliderLight.leftInPixels = 230;
+        sliderLight.topInPixels = -35;
         sliderLight.onValueChangedObservable.add(function (value) {
             intensityValue = value;
         });
 
-        var buttonDayOrNight = BABYLON.GUI.Button.CreateSimpleButton("butDayOrNight", "Night");
-
-        buttonDayOrNight.width = "200px";
+        buttonDayOrNight = BABYLON.GUI.Button.CreateSimpleButton("butDayOrNight", dayText);
+        buttonDayOrNight.width = "150px";
         buttonDayOrNight.height = "40px";
-        buttonDayOrNight.color = "white";
+        buttonDayOrNight.color = "red";
         buttonDayOrNight.cornerRadius = 20;
-        buttonDayOrNight.background = "green";
-        buttonDayOrNight.leftInPixels = 400;
-        buttonDayOrNight.topInPixels = 100;
+        buttonDayOrNight.fontSize = 25;
+        buttonDayOrNight.fontStyle = "bold";
+        buttonDayOrNight.thickness = 5;
+        buttonDayOrNight.background = "yellow";
+        buttonDayOrNight.leftInPixels = 240;
+        buttonDayOrNight.topInPixels = 130;
+
+
+        sunIcon = new BABYLON.GUI.Image("", "sun.png");
+        sunIcon.width = "80px";
+        sunIcon.height = "80px";
+        sunIcon.leftInPixels = 90;
+        sunIcon.topInPixels = 130;
+
+        moonIcon = new BABYLON.GUI.Image("", "moon.png");
+        moonIcon.width = "60px";
+        moonIcon.height = "60px";
+        moonIcon.leftInPixels = 380;
+        moonIcon.topInPixels = 130;
+
+        
+        if(click == 0){
+            advancedTextureSettings.addControl(sunIcon)
+        }
+        else{
+            if(clickedDay == false){
+                if(dayIcon == "moon")
+                    advancedTextureSettings.addControl(moonIcon)
+                else{
+                    advancedTextureSettings.addControl(sunIcon)
+                }
+            }
+
+        }
+
 
         buttonDayOrNight.onPointerUpObservable.add(function () {
-            click += 1;
-            if (click % 2 != 0) {
-                buttonDayOrNight.textBlock.text = "Day";
+            clickedDay = true;
+            if (click == 0){
+                advancedTextureSettings.addControl(sunIcon)
+                moonIcon.dispose()
+                click = 1;
+            }
+            if (click == 2) {
+                click = 1;
+                buttonDayOrNight.textBlock.text = "Night";
                 dayornight = false;
-                skyname = dayornight ? "skybox" : "skybox2";
+                skyname = dayornight ? "skybox2" : "skybox";
 
                 skyboxMaterial.backFaceCulling = false;
                 skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("textures/" + skyname, scene);
@@ -681,11 +800,16 @@ var menuData = function (scene, pauseFlag) {
                 skyboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
                 skyboxMaterial.disableLighting = true;
                 skybox.material = skyboxMaterial;
+                advancedTextureSettings.addControl(sunIcon);
+                moonIcon.dispose();
+
+
             }
             else {
-                buttonDayOrNight.textBlock.text = "Night";
+                click = 2;
+                buttonDayOrNight.textBlock.text = "Day";
                 dayornight = true;
-                skyname = dayornight ? "skybox" : "skybox2";
+                skyname = dayornight ? "skybox2" : "skybox";
 
                 skyboxMaterial.backFaceCulling = false;
                 skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("textures/" + skyname, scene);
@@ -694,32 +818,63 @@ var menuData = function (scene, pauseFlag) {
                 skyboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
                 skyboxMaterial.disableLighting = true;
                 skybox.material = skyboxMaterial;
+                advancedTextureSettings.addControl(moonIcon);
+                sunIcon.dispose();
             }
         });
 
-        var sliderHeight = new BABYLON.GUI.Slider();
+        sliderDifficulty = new BABYLON.GUI.Slider("butDifficulty", "Hard");
+        sliderDifficulty.width = "220px";
+        sliderDifficulty.height = "15px";
+        sliderDifficulty.minimum = 0.0;
+        sliderDifficulty.maximum = 1;
+        sliderDifficulty.value = difficultyRatio;
+        sliderDifficulty.leftInPixels = 230;
+        sliderDifficulty.topInPixels = -130;
+        if (startPressed) {
+            sliderDifficulty.isEnabled = false;
+            sliderDifficulty.background = "red";
+        }
+        else {
+            sliderDifficulty.isEnabled = true;
+            sliderDifficulty.background = "yellow";
+            sliderDifficulty.onValueChangedObservable.add(function (value) {
+                difficultyRatio = value;
+            });
+        }
+
+
+
+
+
+        sliderHeight = new BABYLON.GUI.Slider();
         sliderHeight.minimum = 0.1;
         sliderHeight.maximum = 0.5;
         sliderHeight.value = heightRatio;
-        sliderHeight.height = "20px";
-        sliderHeight.width = "200px";
-        sliderHeight.leftInPixels = 400;
-        sliderHeight.topInPixels = 180;
+        sliderHeight.height = "15px";
+        sliderHeight.width = "220px";
+        sliderHeight.leftInPixels = 230;
+        sliderHeight.topInPixels = 210;
+        sliderHeight.background = "yellow";
+
         sliderHeight.onValueChangedObservable.add(function (value) {
             heightRatio = value;
         });
 
-        buttonBackSettings.width = "200px";
-        buttonBackSettings.height = "80px";
-        buttonBackSettings.color = "white";
+        buttonBackSettings.width = "150px";
+        buttonBackSettings.height = "40px";
+        buttonBackSettings.color = "red";
         buttonBackSettings.cornerRadius = 20;
-        buttonBackSettings.background = "green";
-        buttonBackSettings.leftInPixels = -300;
-        buttonBackSettings.topInPixels = -180;
+        buttonBackSettings.fontStyle = "bold";
+        buttonBackSettings.fontSize = 25;
+        buttonBackSettings.thickness = 5;
+        buttonBackSettings.background = "yellow";
+        buttonBackSettings.leftInPixels = -220;
+        buttonBackSettings.topInPixels = -200;
 
 
         var settingsInstructions = new BABYLON.GUI.Image("", "Settings.png");
-        settingsInstructions.width = "1000px";
+        settingsInstructions.width = "800px";
         settingsInstructions.height = "500px";
         settingsInstructions.verticalAlignment = 2;
         settingsInstructions.horizontalAlignment = 2;
@@ -731,34 +886,48 @@ var menuData = function (scene, pauseFlag) {
         advancedTextureSettings.addControl(sliderHeight);
         advancedTextureSettings.addControl(buttonDayOrNight);
         advancedTextureSettings.addControl(buttonSound);
+        advancedTextureSettings.addControl(sliderDifficulty);
+     
+        // advancedTextureSettings.addControl(sunIcon);
+
+
         buttonBackSettings.onPointerUpObservable.add(function () {
             menuData(scene, pauseFlag);
-
+            clicked = false;
+            clickedDay = false;
             advancedTextureSettings.dispose();
         });
     });
 
-    var buttonHelp = BABYLON.GUI.Button.CreateSimpleButton("butHelp", "Help");;
+    buttonHelp = BABYLON.GUI.Button.CreateSimpleButton("butHelp", "Help");;
     buttonHelp.width = "200px"
     buttonHelp.height = "80px";
-    buttonHelp.color = "white";
+    buttonHelp.color = "red";
+    buttonHelp.fontSize = 40;
+    buttonHelp.fontStyle = "bold";
+    buttonHelp.thickness = 5;
     buttonHelp.cornerRadius = 20;
-    buttonHelp.background = "green";
-    buttonHelp.leftInPixels = 200;
+    buttonHelp.background = "yellow";
+    buttonHelp.leftInPixels = 220;
     buttonHelp.onPointerUpObservable.add(function () {
         advancedTextureMenu.dispose();
         advancedTextureHelp = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
-        var buttonBackHelp = BABYLON.GUI.Button.CreateSimpleButton("buttonBackHelp", "Back");
-        buttonBackHelp.width = "200px"
-        buttonBackHelp.height = "80px";
-        buttonBackHelp.color = "white";
+
+        buttonBackHelp = BABYLON.GUI.Button.CreateSimpleButton("buttonBackHelp", "Back");
+        buttonBackHelp.width = "150px"
+        buttonBackHelp.height = "40px";
+        buttonBackHelp.fontSize = 25;
+        buttonBackHelp.fontStyle = "bold";
+        buttonBackHelp.thickness = 5;
+        buttonBackHelp.color = "red";
         buttonBackHelp.cornerRadius = 20;
-        buttonBackHelp.background = "green";
-        buttonBackHelp.leftInPixels = -300;
-        buttonBackHelp.topInPixels = -300;
-        var helpInstructions = new BABYLON.GUI.Image("", "helpInstructions.png");
-        helpInstructions.width = "1000px";
-        helpInstructions.height = "800px";
+        buttonBackHelp.background = "yellow";
+        buttonBackHelp.leftInPixels = -260;
+        buttonBackHelp.topInPixels = -240;
+
+        helpInstructions = new BABYLON.GUI.Image("", "helpInstructions2.png");
+        helpInstructions.width = "800px";
+        helpInstructions.height = "600px";
         helpInstructions.verticalAlignment = 2;
         helpInstructions.horizontalAlignment = 2;
         helpInstructions.leftInPixels = 45;
@@ -772,14 +941,7 @@ var menuData = function (scene, pauseFlag) {
     });
 
 
-    var tableMenu = new BABYLON.GUI.Rectangle();
-    tableMenu.width = "820px";
-    tableMenu.height = "100px";
-    tableMenu.cornerRadius = 10;
-    tableMenu.color = "Blue";
-    tableMenu.thickness = 10;
-    tableMenu.background = "Purple";
-    tableMenu.leftInPixels = -25;
+
 
     advancedTextureMenu.addControl(tableMenu);
     advancedTextureMenu.addControl(buttonHelp);
@@ -791,7 +953,6 @@ var menuData = function (scene, pauseFlag) {
 window.addEventListener('DOMContentLoaded', function () {
     var canvas = document.getElementById('renderCanvas');
     gameover_on = false;
-
     var engine = null;
 
     var sceneToRender = null;
@@ -810,16 +971,11 @@ window.addEventListener('DOMContentLoaded', function () {
 
         var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(100, 0, 0), scene);
         light.parent = camera;
-        //light.shadowEnabled=true;
-        light.intensity = 0.5;
-        // //light1
-        // var light1 = new BABYLON.DirectionalLight("dir01", new BABYLON.Vector3(0 * 100, -50, 0), scene);
-        // //light1.position = new BABYLON.Vector3(100 * 0, 100, 0);
-        // light.position = new BABYLON.Vector3(-20, 240, -20);
-        // light1.intensity = 0.5;
+        // light.intensity = 0.5;
+
         var light2 = new BABYLON.DirectionalLight("dir01", new BABYLON.Vector3(-1, -2, -1), scene);//-1, -2, -1), scene);
         light2.position = new BABYLON.Vector3(-0, 340, -0);
-        light2.intensity = 0.5;
+        // light2.intensity = 0.5;
         // var light = light2;
         var shadowGenerator = new BABYLON.ShadowGenerator(2048, light2, true);
         //shadowGenerator.setDarkness(1.0);
@@ -830,6 +986,9 @@ window.addEventListener('DOMContentLoaded', function () {
         lightSphere.position = light2.position;
         lightSphere.material = new BABYLON.StandardMaterial("light", scene);
         lightSphere.material.emissiveColor = new BABYLON.Color3(1, 1, 0);
+
+
+
 
         music = new BABYLON.Sound("River", "sounds/river-1.wav", scene, null, { loop: true, autoplay: false, volume: 0.2 });
         music2 = new BABYLON.Sound("HighRiser", "sounds/HighRiser.mp3", scene, null, { loop: true, autoplay: false });
@@ -860,19 +1019,23 @@ window.addEventListener('DOMContentLoaded', function () {
         var tableTimer = new BABYLON.GUI.Rectangle();
         var timerClock = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
         var clockPic = new BABYLON.GUI.Image("", "clock.png");
-        clockPic.width = "100px";
-        clockPic.height = "100px";
+        clockPic.width = "70px";
+        clockPic.height = "70px";
         clockPic.verticalAlignment = 0;
-        clockPic.leftInPixels = 750;
+        clockPic.leftInPixels = 600;
+        clockPic.topInPixels = 5;
         timerClock.addControl(clockPic);
-        tableTimer.width = "200px";
-        tableTimer.height = "100px";
+        tableTimer.width = "100px";
+        tableTimer.height = "50px";
         tableTimer.cornerRadius = 10;
-        tableTimer.color = "Orange";
+        tableTimer.color = "red";
         tableTimer.thickness = 10;
-        tableTimer.background = "Red";
-        tableTimer.horizontalAlignment = 1;
-        tableTimer.verticalAlignment = 0;
+        tableTimer.background = "yellow";
+        // tableTimer.horizontalAlignment = 1;
+        // tableTimer.verticalAlignment = 0;
+        tableTimer.leftInPixels = 680;
+        tableTimer.topInPixels = -300;
+
 
         gameTimer.addControl(tableTimer);
         var textTimer = new BABYLON.GUI.TextBlock();
@@ -885,8 +1048,8 @@ window.addEventListener('DOMContentLoaded', function () {
             textTimer.text = "0" + counterTimer + ":" + timerSetup;
 
         }
-        textTimer.color = "green";
-        textTimer.fontSize = 48;
+        textTimer.color = "red";
+        textTimer.fontSize = 25;
         textTimer.width = "200px";
         tableTimer.addControl(textTimer);
         // Countdown Timer
@@ -899,32 +1062,33 @@ window.addEventListener('DOMContentLoaded', function () {
         ////////////////////////// COIN //////////////////////////////////////
         var coinTable = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
         var coinContainer = new BABYLON.GUI.Rectangle();
-        coinContainer.width = "75px";
-        coinContainer.height = "75px";
+        coinContainer.width = "50px";
+        coinContainer.height = "50px";
         coinContainer.cornerRadius = 20;
         coinContainer.thickness = 5;
-        coinContainer.color = "Yellow";
-        coinContainer.background = "Blue";
+        coinContainer.color = "red";
+        coinContainer.background = "yellow";
         coinContainer.horizontalAlignment = 0;
         coinContainer.verticalAlignment = 0;
+        coinContainer.topInPixels = 10;
         coinContainer.leftInPixels = 100;
         coinTable.addControl(coinContainer);
         var coinText = new BABYLON.GUI.TextBlock();
         coinText.text = "0";
-        coinText.color = "green";
+        coinText.color = "red";
         coinText.fontStyle = "bold";
-        coinText.fontSize = 48;
+        coinText.fontSize = 25;
         coinText.width = "200px";
         coinContainer.addControl(coinText);
 
         var coinSignTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
         var coinSign = new BABYLON.GUI.Image("", "coin.png");
-        coinSign.width = "50px";
-        coinSign.height = "50px";
+        coinSign.width = "30px";
+        coinSign.height = "30px";
         coinSign.verticalAlignment = 0;
         coinSign.horizontalAlignment = 0;
-        coinSign.leftInPixels = 45;
-        coinSign.topInPixels = 15;
+        coinSign.leftInPixels = 60;
+        coinSign.topInPixels = 20;
         coinSignTexture.addControl(coinSign);
 
 
@@ -968,7 +1132,6 @@ window.addEventListener('DOMContentLoaded', function () {
         var meshTaskCity = assetsManagerCity.addMeshTask("Citymeshes", "", "", "Models/Environment/B/Env13.babylon");
         meshTaskCity.onSuccess = function (task) {
             var City_ = task.loadedMeshes[0];
-            // task.loadedMeshes[0].receiveShadows = true;
         }
 
         /////////////////////////////// BOMBS /////////////////////////////////
@@ -987,8 +1150,8 @@ window.addEventListener('DOMContentLoaded', function () {
                 bombTorso.parent = bombPlane;
                 bombPlane.addRotation(-Math.PI / 6, 0, 0);
                 bombPlane.addRotation(Math.PI / 2, 0, 0);
-                bombPlane.isVisible = true;
-
+                bombPlane.isVisible = false;
+                bombTorso.isVisible = true;
                 bombTorsos.push(bombTorso);
                 bombPlanes.push(bombPlane);
             }
@@ -1010,7 +1173,8 @@ window.addEventListener('DOMContentLoaded', function () {
                 coinTorso.addRotation(BABYLON.Tools.ToRadians(Coins_Rotations[icoin].x), BABYLON.Tools.ToRadians(Coins_Rotations[icoin].y), BABYLON.Tools.ToRadians(Coins_Rotations[icoin].z));
                 coinPlane.position = coinPositions[icoin];
                 coinTorso.parent = coinPlane;
-                coinPlane.isVisible = true;
+                coinPlane.isVisible = false;
+                coinTorso.isVisible = true;
 
                 coinTorsos.push(coinTorso);
                 coinPlanes.push(coinPlane);
@@ -1032,7 +1196,8 @@ window.addEventListener('DOMContentLoaded', function () {
                 platformMaterial.emissiveTexture = new BABYLON.Texture("speedy.png", scene);
                 platformTorso = task.loadedMeshes[0];
                 platformTorso.material = platformMaterial;
-                platformPlane.isVisible = true;
+                platformPlane.isVisible = false;
+                platformTorso.isVisible = true;
                 platformPlane.addRotation(Math.PI / 2, 0, 0);
                 platformPlane.parent = platformTorso;
                 platformTorsos.push(platformTorso);
@@ -1096,13 +1261,9 @@ window.addEventListener('DOMContentLoaded', function () {
             wheelMeshes2[FRONT_RIGHT] = wheelMeshes[FRONT_RIGHT] = wheelfrontRight;
             wheelMeshes2[BACK_LEFT] = wheelMeshes[BACK_LEFT] = wheelbackLeft;
             wheelMeshes2[BACK_RIGHT] = wheelMeshes[BACK_RIGHT] = wheelbackRight;
-            // shadowGenerator.addShadowCaster(carTorso);
-            // shadowGenerator.useExponentialShadowMap = true;
-            shadowGenerator.addShadowCaster(carTorso);
-            // shadowGenerator.addShadowCaster(carTorso);
-            shadowGenerator.useExponentialShadowMap = true;
-            //shadowGenerator.setDarkness(0.99);
 
+            shadowGenerator.addShadowCaster(carTorso);
+            shadowGenerator.useExponentialShadowMap = true;
         }
 
         var carFrontier = BABYLON.MeshBuilder.CreateSphere("carForwardMesh", { diameterX: 1.5, diameterY: 0.5, diameterZ: 0.5 }, scene);
@@ -1110,11 +1271,10 @@ window.addEventListener('DOMContentLoaded', function () {
         var carBackwardMesh = BABYLON.MeshBuilder.CreateSphere("carBackwardMesh", { diameterX: 1.8, diameterY: 0.5, diameterZ: 0.5 }, scene);
         carBackwardMesh.isVisible = false;
 
-        initial_car_pos = new BABYLON.Vector3(-490.2470703125, 80, 20.43869018554687);//-492, 80, -12//73.23
         var explosion = BABYLON.ParticleHelper.CreateAsync("explosion", scene);
-        var startAndFinishLine = BABYLON.MeshBuilder.CreateGround("startAndFinish", { width: 2, height: 8 }, scene);
-        startAndFinishLine.position = new BABYLON.Vector3(197, 76.15, 125);
-        startAndFinishLine.addRotation(0, Math.PI / 6, 0);
+        var startAndFinishLine = BABYLON.MeshBuilder.CreateGround("startAndFinish", { width: 8, height: 2 }, scene);
+        startAndFinishLine.position = startline_pos;
+        startAndFinishLine.addRotation(0, Math.PI / 4, 0);
         startAndFinishLine.addRotation(Math.PI / 40, 0, 0);
         startAndFinishLine.addRotation(0, 0, -Math.PI / 40);
         var startLineMaterial = new BABYLON.StandardMaterial("startMat", scene);
@@ -1123,19 +1283,20 @@ window.addEventListener('DOMContentLoaded', function () {
         assetsManagerCity.load();
         var lineChecker = BABYLON.MeshBuilder.CreateGround("check3", { width: 16, height: 8 }, scene);
         lineChecker.addRotation(Math.PI / 2, 0, 0);
-        lineChecker.addRotation(0, Math.PI / 6, 0);
+        lineChecker.isVisible = false;
+        // lineChecker.addRotation(0, Math.PI / 6, 0);
         lineChecker.parent = startAndFinishLine;
         var checkRoot = BABYLON.MeshBuilder.CreateGround("check1", { width: 16, height: 8 }, scene);
         checkRoot.addRotation(Math.PI / 2, 0, 0);
         checkRoot.position = new BABYLON.Vector3(158, 72.5, 310);
-        checkRoot.isVisible = true;
+        checkRoot.isVisible = false;
         var checkRoot2 = BABYLON.MeshBuilder.CreateGround("check2", { width: 16, height: 8 }, scene);
         checkRoot2.addRotation(Math.PI / 2, BABYLON.Tools.ToRadians(225), 0);
-        checkRoot2.position = new BABYLON.Vector3(-485.1195983886719, 75.18190084547773, 24.82729148864746);//-492, 76.23, -10);
-        checkRoot2.isVisible = true;
+        checkRoot2.position = new BABYLON.Vector3(13.332803726196289, 71.44557272047773, -205.10496520996094);//-492, 76.23, -10);
+        checkRoot2.isVisible = false;
 
         assetsManagerCity.onFinish = function (task) {
-            var unmutebuttom = document.getElementById('babylonUnmuteIconBtn')
+            var unmutebuttom = document.getElementById('babylonUnmuteIconBtn');
             task[0].loadedMeshes.forEach((m, i) => {
                 m.physicsImpostor = new BABYLON.PhysicsImpostor(m, BABYLON.PhysicsImpostor.MeshImpostor, { mass: 0, friction: 0.9, restitution: 0.3 });
             })
@@ -1206,7 +1367,7 @@ window.addEventListener('DOMContentLoaded', function () {
                 spheres.push(tuple);
                 spheres.forEach(function ([sphere, sphere_time]) {
                     var difference = ((new Date().getTime()) - sphere_time) / 1000;
-                    if (difference > 10) {
+                    if (difference > numberOfspheres) {
                         sphere.dispose();
                         shadowGenerator.removeShadowCaster(sphere);
 
@@ -1271,7 +1432,7 @@ window.addEventListener('DOMContentLoaded', function () {
                         scene.registerAfterRender(function () {
                             for (let ibomb = 0; ibomb < numBombs; ibomb++) {
                                 bombTorsos[ibomb].addRotation(0, Math.PI / 12, Math.PI / 12);
-                                bombExplosion(carFrontier, carBackwardMesh, carTorso, bombTorsos[ibomb], bombPlanes[ibomb], explosion, positionExplosions[ibomb], intersectionCoins[ibomb]);
+                                bombExplosion(carFrontier, carBackwardMesh, carTorso, bombTorsos[ibomb], bombPlanes[ibomb], explosion, positionExplosions[ibomb], intersectionBombs[ibomb]);
                             }
                             for (let icoin = 0; icoin < numCoins; icoin++) {
                                 coinGather(carFrontier, carBackwardMesh, coinPlanes[icoin], coinTorsos[icoin], coinText, intersectionCoins[icoin]);
@@ -1343,8 +1504,29 @@ window.addEventListener('DOMContentLoaded', function () {
 
 
         scene.registerBeforeRender(function () {
+
+            if (clickSound == 0 || clickSound == 1) {
+                soundText = "On";
+                soundIcon = "off";
+            }
+            else {
+                soundText = "Off";
+                soundIcon = "on";
+            }
+
+            if (click == 0 || click ==1){
+                dayText = 'Night'
+                dayIcon = 'sun'
+            }
+            else{
+                dayText = 'Day'
+                dayIcon = 'moon'
+            }
+            
             light.intensity = intensityValue;
+            light2.intensity = intensityValue;
             canvas.height = heightRatio * canvas.width;
+            numberOfspheres = Math.floor(difficultyRatio * 100);
             var dt = engine.getDeltaTime().toFixed() / 1000;
             if (vehicleReady) {
 
@@ -1465,7 +1647,7 @@ window.addEventListener('DOMContentLoaded', function () {
                 else {
                     local_pause = false;
                 }
-                if (startMotion && global_pos.y < -1000) {//60) {
+                if (startMotion && global_pos.y < 60) {
                     falls_counter++
                     if (falls_counter > 3) {
                         gameover_on = true;
@@ -1495,7 +1677,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
                     }
                 }
-                if (startMotion == 1 && global_pos.y < -1000) {//60) {
+                if (startMotion == 1 && global_pos.y < 60) {
                     falls_counter++
                     if (falls_counter > 3) {
                         gameover_on = true;
@@ -1529,13 +1711,23 @@ window.addEventListener('DOMContentLoaded', function () {
                     gameover_on = false;
                     numtries = 0;
                     gameover_on = false;
+                    music.pause();
+                    music2.pause();
+                    music3.pause();
+                    music4.pause();
+                    music5.pause();
+                    music6.pause();
+
                 }
                 if (Math.abs(speed) < 0.6 && startMotion) {
 
                     // falls_counter++
                     // //
                     if (Math.abs(global_rot.z) > 2.5 || numtries > 4) {
-                        music4.play();
+                        if (soundOn) {
+                            music4.play();
+
+                        }
                         var yprquaternion = BABYLON.Quaternion.RotationYawPitchRoll(global_rot.y, global_rot.x, 0 * global_rot.z);
                         tm.setRotation(new Ammo.btQuaternion(yprquaternion.x, yprquaternion.y, yprquaternion.z, yprquaternion.w));
                         tm.setOrigin(new Ammo.btVector3(global_pos.x, global_pos.y + 5, global_pos.z));
@@ -1717,50 +1909,50 @@ window.addEventListener('DOMContentLoaded', function () {
             }
         }, 1000);
     };
-    // var makePhysicsObject = (newMeshes, scene, scaling) => {
-    //     // Create physics root and position it to be the center of mass for the imported mesh
-    //     var physicsRoot = new BABYLON.Mesh("physicsRoot", scene);
+    var makePhysicsObject = (newMeshes, scene, scaling) => {
+        // Create physics root and position it to be the center of mass for the imported mesh
+        var physicsRoot = new BABYLON.Mesh("physicsRoot", scene);
 
-    //     // For all children labeled box (representing colliders), make them invisible and add them as a child of the root object
-    //     newMeshes.forEach((m, i) => {
-    //         if ((m.name.indexOf("Box") != -1) || (m.name.indexOf("Cylinder") != -1)) {
-    //             m.isVisible = false
-    //             physicsRoot.addChild(m)
-    //         }
-    //     })
+        // For all children labeled box (representing colliders), make them invisible and add them as a child of the root object
+        newMeshes.forEach((m, i) => {
+            if ((m.name.indexOf("Box") != -1) || (m.name.indexOf("Cylinder") != -1)) {
+                m.isVisible = false
+                physicsRoot.addChild(m)
+            }
+        })
 
-    //     // Add all root nodes within the loaded gltf to the physics root
-    //     newMeshes.forEach((m, i) => {
-    //         if (m.parent == null) {
-    //             physicsRoot.addChild(m)
-    //         }
-    //     })
+        // Add all root nodes within the loaded gltf to the physics root
+        newMeshes.forEach((m, i) => {
+            if (m.parent == null) {
+                physicsRoot.addChild(m)
+            }
+        })
 
-    //     // Make every collider into a physics impostor
-    //     physicsRoot.getChildMeshes().forEach((m) => {
-    //         if (m.name.indexOf("Box") != -1) {
-    //             m.scaling.x = Math.abs(m.scaling.x)
-    //             m.scaling.y = Math.abs(m.scaling.y)
-    //             m.scaling.z = Math.abs(m.scaling.z)
-    //             m.physicsImpostor = new BABYLON.PhysicsImpostor(m, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0.1, friction: 0.5, restitution: 0.3 }, scene);
-    //         }
-    //         else
-    //             if (m.name.indexOf("Cylinder") != -1) {
-    //                 m.scaling.x = 3.0 * Math.abs(m.scaling.x)
-    //                 m.scaling.y = 4.0 * Math.abs(m.scaling.y)
-    //                 m.scaling.z = 3.0 * Math.abs(m.scaling.z)
-    //                 // m.physicsImpostor = new BABYLON.PhysicsImpostor(m, BABYLON.PhysicsImpostor.CylinderImpostor, { mass: 10, friction: 0.5, restitution: 0.0 }, scene);
-    //                 m.physicsImpostor = new BABYLON.PhysicsImpostor(m, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 10, friction: 0.5, restitution: 0.7 }, scene);
-    //             }
+        // Make every collider into a physics impostor
+        physicsRoot.getChildMeshes().forEach((m) => {
+            if (m.name.indexOf("Box") != -1) {
+                m.scaling.x = Math.abs(m.scaling.x)
+                m.scaling.y = Math.abs(m.scaling.y)
+                m.scaling.z = Math.abs(m.scaling.z)
+                m.physicsImpostor = new BABYLON.PhysicsImpostor(m, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0.1, friction: 0.5, restitution: 0.3 }, scene);
+            }
+            else
+                if (m.name.indexOf("Cylinder") != -1) {
+                    m.scaling.x = 3.0 * Math.abs(m.scaling.x)
+                    m.scaling.y = 4.0 * Math.abs(m.scaling.y)
+                    m.scaling.z = 3.0 * Math.abs(m.scaling.z)
+                    // m.physicsImpostor = new BABYLON.PhysicsImpostor(m, BABYLON.PhysicsImpostor.CylinderImpostor, { mass: 10, friction: 0.5, restitution: 0.0 }, scene);
+                    m.physicsImpostor = new BABYLON.PhysicsImpostor(m, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 10, friction: 0.5, restitution: 0.7 }, scene);
+                }
 
-    //     })
+        })
 
-    //     // Scale the root object and turn it into a physics impsotor
-    //     physicsRoot.scaling.scaleInPlace(scaling)
-    //     physicsRoot.physicsImpostor = new BABYLON.PhysicsImpostor(physicsRoot, BABYLON.PhysicsImpostor.NoImpostor, { mass: 10, friction: 0.5, restitution: 0.7 }, scene);
+        // Scale the root object and turn it into a physics impsotor
+        physicsRoot.scaling.scaleInPlace(scaling)
+        physicsRoot.physicsImpostor = new BABYLON.PhysicsImpostor(physicsRoot, BABYLON.PhysicsImpostor.NoImpostor, { mass: 10, friction: 0.5, restitution: 0.7 }, scene);
 
-    //     return physicsRoot
-    // }
+        return physicsRoot
+    }
 
     var engine;
     try {
