@@ -811,7 +811,7 @@ window.addEventListener('DOMContentLoaded', function () {
         var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(100, 0, 0), scene);
         light.parent = camera;
         //light.shadowEnabled=true;
-
+        light.intensity = 0.5;
         // //light1
         // var light1 = new BABYLON.DirectionalLight("dir01", new BABYLON.Vector3(0 * 100, -50, 0), scene);
         // //light1.position = new BABYLON.Vector3(100 * 0, 100, 0);
@@ -826,7 +826,7 @@ window.addEventListener('DOMContentLoaded', function () {
         // shadowGenerator.useExponentialShadowMap = true;
         // Shadows
         // var shadowGenerator = new BABYLON.ShadowGenerator(1024, light);
-        var lightSphere = BABYLON.Mesh.CreateSphere("sphere", 100, 20, scene);
+        var lightSphere = BABYLON.Mesh.CreateSphere("sphere", 200, 40, scene);
         lightSphere.position = light2.position;
         lightSphere.material = new BABYLON.StandardMaterial("light", scene);
         lightSphere.material.emissiveColor = new BABYLON.Color3(1, 1, 0);
@@ -1065,7 +1065,7 @@ window.addEventListener('DOMContentLoaded', function () {
             let forceFactor = cannon ? 1 : 1500;
             carTorso = task.loadedMeshes.filter(q => q.name == "Car1")[0]
             Body_Box = task.loadedMeshes.filter(q => q.name == "Body_Box")[0];
-            Body_Box.isVisible = true;
+            Body_Box.isVisible = false;
             wheelfrontLeft = task.loadedMeshes.filter(q => q.name == "Left_Wheel")[0]
             wheelbackLeft = task.loadedMeshes.filter(q => q.name == "Back_Left_Wheel")[0]
             wheelbackRight = task.loadedMeshes.filter(q => q.name == "Back_Right_Wheel")[0]
@@ -1147,10 +1147,48 @@ window.addEventListener('DOMContentLoaded', function () {
 
             scene.registerBeforeRender(function () {
                 if (ticker++ % 60) return;
+                var showFloatingSphereNodeMat = Math.random() >= 0.5;
 
-                let s = BABYLON.MeshBuilder.CreateSphere("b", { diameter: 1 });
-                s.material = new BABYLON.StandardMaterial("earthMat", scene);
-                s.material.diffuseTexture = new BABYLON.Texture("Models/Fireball/Sphere3.jpg", scene);
+                let s = BABYLON.MeshBuilder.CreateSphere("b", { diameter: 1, segments: 32 });
+
+                if (showFloatingSphereNodeMat) {
+                    // var sphereFloatingNodeMat = BABYLON.MeshBuilder.CreateSphere("sphere_floating_nodemat", { diameter: 2, segments: 32 }, scene);
+
+                    // sphereFloatingNodeMat.position.y = 3;
+                    // sphereFloatingNodeMat.position.x = -2;
+                    // sphereFloatingNodeMat.position.z = -2;
+                    //#IFJ86Q/3//JN2BSF#29 //fireBall.json //"Models/Fireball/fireBall.json"
+                    BABYLON.NodeMaterial.ParseFromSnippetAsync("JN2BSF#29", scene).then((nodeMaterial) => {
+                        var worldPosVarName = nodeMaterial.getBlockByName("worldPos").output.associatedVariableName;
+
+                         s.material = nodeMaterial;
+                        // s.material.shadowDepthWrapper = new BABYLON.ShadowDepthWrapper(nodeMaterial, scene, {
+                        //     remappedVariables: ["worldPos", worldPosVarName, "alpha", "1."]
+                        // });
+                    });
+                    // BABYLON.nodeMaterial.loadAsync("Models/Fireball/fireBall.json").then((nodeMaterial) => {
+                    //     nodeMaterial.build(true);
+
+                    // // BABYLON.NodeMaterial.ParseFromSnippetAsync("JN2BSF#29", scene).then((nodeMaterial) => {
+                    //     var worldPosVarName = nodeMaterial.getBlockByName("worldPos").output.associatedVariableName;
+
+                    //      s.material = nodeMaterial;
+                    //     // s.material.shadowDepthWrapper = new BABYLON.ShadowDepthWrapper(nodeMaterial, scene, {
+                    //     //     remappedVariables: ["worldPos", worldPosVarName, "alpha", "1."]
+                    //     // });
+                    // });
+                    // let skyMaterial = new BABYLON.NodeMaterial('sky material', scene, { emitComments: true });
+                    // skyMaterial.loadAsync("Models/Fireball/fireBall.json");
+                    // skyMaterial.build(true);
+                    // // skyMaterial.backFaceCulling = false;
+                    // // let skybox = BABYLON.MeshBuilder.CreateSphere('skybox', { segments: 10.0, diameter: 200 }, this.scene);
+                    // s.material = skyMaterial;
+                }
+                else {
+                    s.material = new BABYLON.StandardMaterial("earthMat", scene);
+                    s.material.diffuseTexture = new BABYLON.Texture("Models/Fireball/Sphere3.jpg", scene);
+
+                }
 
                 var global_rot = chassisMesh.rotationQuaternion.toEulerAngles();//q.getAngle();
                 var global_pos = chassisMesh.position;
@@ -1532,7 +1570,7 @@ window.addEventListener('DOMContentLoaded', function () {
         var wheel_size_BACK_LEFT = wheelMeshes[BACK_LEFT].getBoundingInfo().boundingBox.extendSizeWorld;
         var wheel_size_BACK_RIGHT = wheelMeshes[BACK_RIGHT].getBoundingInfo().boundingBox.extendSizeWorld;
         var body_size = Body_Box.getBoundingInfo().boundingBox.extendSizeWorld;
-        Body_Box.isVisible = true;
+        Body_Box.isVisible = false;
         massVehicle = 50;
         cardimensions(2 * body_size.x, 2 * body_size.y, 2 * body_size.z, massVehicle, 1);
         //body
