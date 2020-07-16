@@ -1665,14 +1665,14 @@ window.addEventListener('DOMContentLoaded', function () {
                 }
                 if (startMotion && global_pos.y < 60) {
                     falls_counter++
-                    if (falls_counter > 3) {
+                    if (falls_counter > 4) {
                         gameover_on = true;
                         falls_counter = 0;
                     }
                     else {
                         var yprquaternion = BABYLON.Quaternion.RotationYawPitchRoll(global_rot.y, global_rot.x, 0 * global_rot.z);
                         tm.setRotation(new Ammo.btQuaternion(yprquaternion.x, yprquaternion.y, yprquaternion.z, yprquaternion.w));
-                        tm.setOrigin(new Ammo.btVector3(global_pos.x, global_pos.y + 20, global_pos.z));
+                        tm.setOrigin(new Ammo.btVector3(global_pos.x, global_pos.y + 30, global_pos.z));
                         p = tm.getOrigin();
                         q = tm.getRotation();
                     }
@@ -1695,14 +1695,14 @@ window.addEventListener('DOMContentLoaded', function () {
                 }
                 if (startMotion == 1 && global_pos.y < 60) {
                     falls_counter++
-                    if (falls_counter > 3) {
+                    if (falls_counter > 4) {
                         gameover_on = true;
                         falls_counter = 0;
                     }
                     else {
                         var yprquaternion = BABYLON.Quaternion.RotationYawPitchRoll(global_rot.y, global_rot.x, 0 * global_rot.z);
                         tm.setRotation(new Ammo.btQuaternion(yprquaternion.x, yprquaternion.y, yprquaternion.z, yprquaternion.w));
-                        tm.setOrigin(new Ammo.btVector3(global_pos.x, global_pos.y + 20, global_pos.z));
+                        tm.setOrigin(new Ammo.btVector3(global_pos.x, global_pos.y + 30, global_pos.z));
                         p = tm.getOrigin();
                         q = tm.getRotation();
                         // chassisMesh.rotationQuaternion.set(q_x, q_y, q_z, q_w)
