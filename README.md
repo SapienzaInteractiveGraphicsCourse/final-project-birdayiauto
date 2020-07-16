@@ -49,6 +49,9 @@ If you want to play the game, you can play through the link below:
 
 https://sapienzainteractivegraphicscourse.github.io/final-project-birdayiauto/
 
+And if you want more information about it, the technical report is available here:
+https://github.com/SapienzaInteractiveGraphicsCourse/final-project-birdayiauto/blob/master/Report/IG_Final_Project.pdf
+
 The game has been developed by BirdAyiAuto team. Team members are:
 
 **_David Esteban Imbajoa Ruiz_** and **_Mahammad Namazov_**
