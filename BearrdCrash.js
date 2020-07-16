@@ -1115,17 +1115,17 @@ window.addEventListener('DOMContentLoaded', function () {
         blackMaterial.emissiveColor = new BABYLON.Color3(0.1, 0.1, 0.1);
         wheelDirectionCS0 = new Ammo.btVector3(0, -1, 0);
         wheelAxleCS = new Ammo.btVector3(-1, 0, 0);
-
+        
         // Enable physics
-        var groundSize = 3000;
+        // var groundSize = 3000;
 
-        var ground = BABYLON.Mesh.CreateGround("ground1", groundSize, groundSize, 2, scene);
+        // var ground = BABYLON.Mesh.CreateGround("ground1", groundSize, groundSize, 2, scene);
 
-        var groundMaterial = new BABYLON.StandardMaterial("ground", scene);
-        groundMaterial.diffuseColor = new BABYLON.Color3(1, 0, 0);//0.75, 1, 0.25);
-        ground.material = groundMaterial;
-        ground.position.y = -0;
-        ground.physicsImpostor = new BABYLON.PhysicsImpostor(ground, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, friction: 0.5, restitution: 0.7 }, scene);
+        // var groundMaterial = new BABYLON.StandardMaterial("ground", scene);
+        // groundMaterial.diffuseColor = new BABYLON.Color3(1, 0, 0);//0.75, 1, 0.25);
+        // ground.material = groundMaterial;
+        // ground.position.y = -0;
+        // ground.physicsImpostor = new BABYLON.PhysicsImpostor(ground, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, friction: 0.5, restitution: 0.7 }, scene);
 
         //   Convert to physics object and position
         var assetsManagerCity = new BABYLON.AssetsManager(scene);
