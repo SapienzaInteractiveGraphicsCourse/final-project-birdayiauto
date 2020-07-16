@@ -44,6 +44,11 @@ In order to pause the game you must press the key **P** again. Then you can chan
 
 
 ## Finally
+
+If you want to play the game, you can play through the link below:
+
+https://sapienzainteractivegraphicscourse.github.io/final-project-birdayiauto/
+
 The game has been developed by BirdAyiAuto team. Team members are:
 
 **_David Esteban Imbajoa Ruiz_** and **_Mahammad Namazov_**
