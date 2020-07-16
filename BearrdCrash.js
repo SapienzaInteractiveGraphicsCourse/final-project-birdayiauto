@@ -93,7 +93,8 @@ var massVehicle = 200//*localscale_;
 var pos_car_fact = 3;
 var pause_car_Pos;//= new BABYLON.Vector3(pos_car_fact * 70, 82, pos_car_fact * 40);
 var pause_car_Rot;//= new BABYLON.Vector3(pos_car_fact * 70, 82, pos_car_fact * 40);
-var local_pause = false;
+var local_pause = false;//true;//false;
+var begginingpause=true;
 var wheelAxisPositionBack = -chassisLength * 0.4;//-1*localscale_;
 var wheelRadiusBack = .4 * localscale_;
 var wheelWidthBack = .3 * localscale_;
@@ -632,7 +633,7 @@ var menuData = function (scene, pauseFlag) {
         makePause = true;
         if (notStart) {
             startMotion = true;
-
+            //local_pause=true;
         }
 
 
@@ -676,15 +677,15 @@ var menuData = function (scene, pauseFlag) {
         soundOnIcon.height = "60px";
         soundOnIcon.leftInPixels = 380;
         soundOnIcon.topInPixels = 40;
-        
-        if(clickSound == 0){
+
+        if (clickSound == 0) {
             advancedTextureSettings.addControl(soundOffIcon)
         }
-        else{
-            if(clicked == false){
-                if(soundIcon == "off")
+        else {
+            if (clicked == false) {
+                if (soundIcon == "off")
                     advancedTextureSettings.addControl(soundOffIcon)
-                else{
+                else {
                     advancedTextureSettings.addControl(soundOnIcon)
                 }
             }
@@ -764,15 +765,15 @@ var menuData = function (scene, pauseFlag) {
         moonIcon.leftInPixels = 380;
         moonIcon.topInPixels = 130;
 
-        
-        if(click == 0){
+
+        if (click == 0) {
             advancedTextureSettings.addControl(sunIcon)
         }
-        else{
-            if(clickedDay == false){
-                if(dayIcon == "moon")
+        else {
+            if (clickedDay == false) {
+                if (dayIcon == "moon")
                     advancedTextureSettings.addControl(moonIcon)
-                else{
+                else {
                     advancedTextureSettings.addControl(sunIcon)
                 }
             }
@@ -782,7 +783,7 @@ var menuData = function (scene, pauseFlag) {
 
         buttonDayOrNight.onPointerUpObservable.add(function () {
             clickedDay = true;
-            if (click == 0){
+            if (click == 0) {
                 advancedTextureSettings.addControl(sunIcon)
                 moonIcon.dispose()
                 click = 1;
@@ -887,7 +888,7 @@ var menuData = function (scene, pauseFlag) {
         advancedTextureSettings.addControl(buttonDayOrNight);
         advancedTextureSettings.addControl(buttonSound);
         advancedTextureSettings.addControl(sliderDifficulty);
-     
+
         // advancedTextureSettings.addControl(sunIcon);
 
 
@@ -1022,6 +1023,7 @@ window.addEventListener('DOMContentLoaded', function () {
         clockPic.width = "70px";
         clockPic.height = "70px";
         clockPic.verticalAlignment = 0;
+        // clockPic.horizontalAlignment = 1;
         clockPic.leftInPixels = 600;
         clockPic.topInPixels = 5;
         timerClock.addControl(clockPic);
@@ -1032,9 +1034,9 @@ window.addEventListener('DOMContentLoaded', function () {
         tableTimer.thickness = 10;
         tableTimer.background = "yellow";
         // tableTimer.horizontalAlignment = 1;
-        // tableTimer.verticalAlignment = 0;
+        tableTimer.verticalAlignment = 0;
         tableTimer.leftInPixels = 680;
-        tableTimer.topInPixels = -300;
+        tableTimer.topInPixels = 5;//-300;
 
 
         gameTimer.addControl(tableTimer);
@@ -1193,7 +1195,7 @@ window.addEventListener('DOMContentLoaded', function () {
                 platformTorso.scaling = new BABYLON.Vector3(0.3, 0.3, 0.3);
                 platformTorso.addRotation(0, Math.PI, 0);
                 platformTorso.addRotation(BABYLON.Tools.ToRadians(Platforms_Rotations[iplatform].x), BABYLON.Tools.ToRadians(Platforms_Rotations[iplatform].y), BABYLON.Tools.ToRadians(Platforms_Rotations[iplatform].z));
-                platformMaterial.emissiveTexture = new BABYLON.Texture("speedy.png", scene);
+                platformMaterial.diffuseTexture = new BABYLON.Texture("speedy.png", scene);
                 platformTorso = task.loadedMeshes[0];
                 platformTorso.material = platformMaterial;
                 platformPlane.isVisible = false;
@@ -1308,7 +1310,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
             scene.registerBeforeRender(function () {
                 if (ticker++ % 60) return;
-                var showFloatingSphereNodeMat = Math.random() >= 0.5;
+                var showFloatingSphereNodeMat = Math.random() >= 0;//0.5;
 
                 let s = BABYLON.MeshBuilder.CreateSphere("b", { diameter: 1, segments: 32 });
 
@@ -1322,7 +1324,7 @@ window.addEventListener('DOMContentLoaded', function () {
                     BABYLON.NodeMaterial.ParseFromSnippetAsync("JN2BSF#29", scene).then((nodeMaterial) => {
                         var worldPosVarName = nodeMaterial.getBlockByName("worldPos").output.associatedVariableName;
 
-                         s.material = nodeMaterial;
+                        s.material = nodeMaterial;
                         // s.material.shadowDepthWrapper = new BABYLON.ShadowDepthWrapper(nodeMaterial, scene, {
                         //     remappedVariables: ["worldPos", worldPosVarName, "alpha", "1."]
                         // });
@@ -1514,15 +1516,15 @@ window.addEventListener('DOMContentLoaded', function () {
                 soundIcon = "on";
             }
 
-            if (click == 0 || click ==1){
+            if (click == 0 || click == 1) {
                 dayText = 'Night'
                 dayIcon = 'sun'
             }
-            else{
+            else {
                 dayText = 'Day'
                 dayIcon = 'moon'
             }
-            
+
             light.intensity = intensityValue;
             light2.intensity = intensityValue;
             canvas.height = heightRatio * canvas.width;
@@ -1622,6 +1624,7 @@ window.addEventListener('DOMContentLoaded', function () {
                 tm = vehicle.getChassisWorldTransform();
                 p = tm.getOrigin();
                 q = tm.getRotation();
+                var lolcal_physics_pos=p.y();
                 var global_rot = chassisMesh.rotationQuaternion.toEulerAngles();//q.getAngle();
                 var global_pos = chassisMesh.position;
                 if (!startMotion) {
@@ -1640,6 +1643,19 @@ window.addEventListener('DOMContentLoaded', function () {
                     } else if (local_pause) {
                         tm.setRotation(new Ammo.btQuaternion(pause_car_Rot.x(), pause_car_Rot.y(), pause_car_Rot.z(), pause_car_Rot.w()));
                         tm.setOrigin(new Ammo.btVector3(pause_car_Pos.x(), pause_car_Pos.y(), pause_car_Pos.z()));
+                        p = tm.getOrigin();
+                        q = tm.getRotation();
+                    }
+                    else if(lolcal_physics_pos>20&&lolcal_physics_pos<75.5 )
+                    {
+                        if(begginingpause){
+                            begginingpause=false;
+                        pause_car_Pos = new Ammo.btVector3(p.x(), p.y(), p.z());
+
+                        pause_car_Rot = new Ammo.btQuaternion(q.x(), q.y(), q.z(), q.w());
+                        }
+                        tm.setRotation(new Ammo.btQuaternion(pause_car_Rot.x(), pause_car_Rot.y(), pause_car_Rot.z(), pause_car_Rot.w()));
+                        tm.setOrigin(new Ammo.btVector3(pause_car_Pos.x(), 75.5+0*pause_car_Pos.y(), pause_car_Pos.z()));
                         p = tm.getOrigin();
                         q = tm.getRotation();
                     }
@@ -1662,7 +1678,7 @@ window.addEventListener('DOMContentLoaded', function () {
                     }
                 }
                 else {
-                    local_pause = false;
+                    //local_pause = false;
                     if (gameStarted) {
                         gameStarted = false;
                         var axis = new BABYLON.Vector3(0, 1, 0);
