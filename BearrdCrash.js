@@ -1024,7 +1024,7 @@ window.addEventListener('DOMContentLoaded', function () {
         clockPic.height = "70px";
         clockPic.verticalAlignment = 0;
         // clockPic.horizontalAlignment = 1;
-        clockPic.leftInPixels = 600;
+        clockPic.leftInPixels =490;// 600;
         clockPic.topInPixels = 5;
         timerClock.addControl(clockPic);
         tableTimer.width = "100px";
@@ -1035,8 +1035,8 @@ window.addEventListener('DOMContentLoaded', function () {
         tableTimer.background = "yellow";
         // tableTimer.horizontalAlignment = 1;
         tableTimer.verticalAlignment = 0;
-        tableTimer.leftInPixels = 680;
-        tableTimer.topInPixels = 5;//-300;
+        tableTimer.leftInPixels =570; //680;
+        tableTimer.topInPixels = 5;//5;//-300;
 
 
         gameTimer.addControl(tableTimer);
