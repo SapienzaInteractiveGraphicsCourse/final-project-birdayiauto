@@ -161,7 +161,7 @@ var printedTime = 0;
 var counterTimer = Math.floor(currentTime / 60);
 var previousCoin;
 var heightRatio = 0.45;
-var difficultyRatio = 0;
+var difficultyRatio =0.0;// 0;
 
 // buttons click check
 var click = 0;
@@ -1226,7 +1226,7 @@ window.addEventListener('DOMContentLoaded', function () {
             rightBone.rotate(new BABYLON.Vector3(1, 0, 0), Math.PI / 2);
             leftBone.rotate(new BABYLON.Vector3(1, 0, 0), Math.PI / 2);
         }
-        var meshTaskCar = assetsManagerCity.addMeshTask("carmeshes", "", "", "Models/Cars/Car11/B/Car11.babylon");
+        var meshTaskCar = assetsManagerCity.addMeshTask("carmeshes", "", "", "Models/Cars/Car12/Car12.babylon");
         meshTaskCar.onSuccess = function (task) {
             let cannon = true;
             let forceFactor = cannon ? 1 : 1500;
@@ -1238,10 +1238,14 @@ window.addEventListener('DOMContentLoaded', function () {
             wheelbackRight = task.loadedMeshes.filter(q => q.name == "Back_Right_Wheel")[0]
             wheelfrontRight = task.loadedMeshes.filter(q => q.name == "Right_Wheel")[0]
             ps_carTorso = task.loadedMeshes.filter(q => q.name == "Body_Box")[0]
-            ps_wheelfrontLeft = task.loadedMeshes.filter(q => q.name == "Left_Wheel_Cylinder")[0];
-            ps_wheelbackLeft = task.loadedMeshes.filter(q => q.name == "Back_Left_Wheel_Cylinder")[0];
-            ps_wheelbackRight = task.loadedMeshes.filter(q => q.name == "Back_Right_Wheel_Cylinder")[0];;
-            ps_wheelfrontRight = task.loadedMeshes.filter(q => q.name == "Right_Wheel_Cylinder")[0];
+            ps_wheelfrontLeft   = task.loadedMeshes.filter(q => q.name == "Left_Wheel_Cylinder")[0];
+            ps_wheelbackLeft    = task.loadedMeshes.filter(q => q.name == "Back_Left_Wheel_Cylinder")[0];
+            ps_wheelbackRight   = task.loadedMeshes.filter(q => q.name == "Back_Right_Wheel_Cylinder")[0];;
+            ps_wheelfrontRight  = task.loadedMeshes.filter(q => q.name == "Right_Wheel_Cylinder")[0];
+            ps_wheelfrontLeft .isVisible=false;
+            ps_wheelbackLeft  .isVisible=false;
+            ps_wheelbackRight .isVisible=false;
+            ps_wheelfrontRight.isVisible=false;
             chassisMesh = carTorso;
             var camera = new BABYLON.FollowCamera("FollowCam", new BABYLON.Vector3(0, 10, -10), scene);
             camera.radius = 10;
