@@ -6,6 +6,8 @@ final-project-birdayiauto created by GitHub Classroom
 ## What is the BearrdCrash Game?
 
 ### _Idea and Scenario_
+![alt text](https://github.com/SapienzaInteractiveGraphicsCourse/final-project-birdayiauto/blob/master/Images/City_mode_1.JPG?raw=true)
+
 
 The BearrdCrash Game idea was built upon Crash game. 
 
@@ -19,15 +21,16 @@ The game was developed by using the Babylon.js environment. The _BearBirdBuddy_,
 hand, _car_, _city_, _buildings_, _start line_ of the game was built by using **Blender** and **3ds Max**.
 
 Animations of the game were built by **BirdAyiAuto Team** by using default rotation and translation functions of **Babylon.js** and **Physics** libraries.
+![alt text](https://github.com/SapienzaInteractiveGraphicsCourse/final-project-birdayiauto/blob/master/Images/Fireball_mode_1.JPG?raw=true)
 
 ## Game instructions
 
 When the game starts player will see the start menu. You can do some arrangements on settings menu, which involves the tuning of difficulty, light, sound, screen size and day/night.
 It has to be emphasized that, once player start play button, tuning of difficulty will be disabled.
-
+![alt text](https://github.com/SapienzaInteractiveGraphicsCourse/final-project-birdayiauto/blob/master/Images/interfaz_2_IG.jpg?raw=true)
 ### _How to play?_
-
-After clicikn play button, player must press key P once in order to start countdown. During countdown all keyboards will be deactivated. When 5 seconds countdwon will be end
+![alt text](https://github.com/SapienzaInteractiveGraphicsCourse/final-project-birdayiauto/blob/master/Images/interfaz_1_IG_latex.jpg?raw=true)
+After click in **play button**, player must **press key P** once in order to start countdown. During countdown all keyboards will be deactivated. When 5 seconds countdwon will be end
 player can start to move. How?
 
 **W**: **_Going forward_**
@@ -41,6 +44,8 @@ player can start to move. How?
 ### _Pause button_
 
 In order to pause the game you must press the key **P** again. Then you can change everything in the settings menu, but difficulty of the game.
+
+![alt text](https://github.com/SapienzaInteractiveGraphicsCourse/final-project-birdayiauto/blob/master/Images/Shadow_mode_1.JPG?raw=true)
 
 
 ## Finally
